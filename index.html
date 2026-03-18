@@ -3,180 +3,503 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WB Lima | Engenharia de Segurança Eletrônica</title>
-    <meta name="description" content="Segurança eletrônica de alto padrão. Proteção, IA e monitoramento para corporações e condomínios.">
-    
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>WB Lima | Integração de Sistemas de Segurança Eletrônica</title>
+    <meta name="description" content="WB Lima - Soluções completas em segurança eletrônica, automação e proteção perimetral. Integradores homologados JVA. CFTV, controle de acesso, cercas elétricas e alarmes monitorados.">
+    <meta name="keywords" content="segurança eletrônica, CFTV, cerca elétrica, controle de acesso, alarme monitorado, automação, JVA, Intelbras, Hikvision, Dahua">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header Premium Glass -->
-    <header id="header">
-        <nav class="nav">
-<img src="assets/logo.png" alt="WB Lima - Segurança Eletrônica" class="logo-img">
+    <!-- Scan Line Effect -->
+    <div class="scan-line" aria-hidden="true"></div>
 
-            <button class="hamburger">
-                <i class="fas fa-bars"></i>
+    <!-- Header -->
+    <header id="header">
+        <nav class="nav container">
+            <a href="#hero" class="logo-link">
+                <img src="assets/logo.png" alt="WB Lima - Integração de Sistemas" class="logo-img">
+            </a>
+            <button class="hamburger" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
             <ul class="nav-links">
                 <li><a href="#hero">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#servicos">Soluções</a></li>
+                <li><a href="#parceiros">Parceiros</a></li>
                 <li><a href="#portfolio">Projetos</a></li>
-                <li><a href="#contato">Fale Conosco</a></li>
+                <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section com Particles Interativos -->
-    <section id="hero" class="hero-section">
-        <canvas id="network-canvas"></canvas>
-        <div class="hero-bg-overlay"></div>
+    <!-- Hero -->
+    <section id="hero" class="hero">
+        <canvas id="grid-canvas" aria-hidden="true"></canvas>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="anim-fade" data-delay="100">
+                Proteção inteligente<br>
+                <span class="text-accent">para o seu patrimônio</span>
+            </h1>
+            <p class="hero-desc anim-fade" data-delay="200">
+                Soluções completas em segurança eletrônica, automação e proteção perimetral para residências, condomínios e empresas. Tecnologia de ponta com atendimento personalizado.
+            </p>
+            <div class="hero-actions anim-fade" data-delay="300">
+                <a href="#contato" class="btn btn-primary">
+                    <i class="fas fa-bolt"></i> Solicitar Orçamento
+                </a>
+                <a href="#servicos" class="btn btn-ghost">
+                    Nossas Soluções <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="hero-stats anim-fade" data-delay="400">
+                <div class="hero-stat">
+                    <strong class="counter" data-target="500">0</strong><span>+</span>
+                    <small>Projetos Entregues</small>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <strong class="counter" data-target="24">0</strong><span>h</span>
+                    <small>Monitoramento</small>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <strong class="counter" data-target="99">0</strong><span>%</span>
+                    <small>Uptime</small>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint anim-fade" data-delay="600">
+            <span>Role para explorar</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="section section-with-particles">
+        <canvas class="bg-particles" aria-hidden="true"></canvas>
         <div class="container">
-            <div class="hero-glass parallax animate-on-scroll">
-                <h1>Segurança com <br><span style="color: var(--neon-blue)">Inteligência Avançada</span></h1>
-                <p>Protegemos o seu patrimônio com engenharia de ponta, inteligência artificial e monitoramento 24h. A excelência técnica que as grandes corporações exigem, projetada para o seu cenário.</p>
-                <div class="hero-ctas">
-                    <a href="#contato" class="btn btn-primary"><i class="fas fa-shield-halved"></i> Solicitar Projeto</a>
-                    <a href="#servicos" class="btn btn-secondary"><i class="fas fa-microchip"></i> Conhecer Soluções</a>
+            <div class="sobre-grid">
+                <div class="sobre-content">
+                    <span class="section-tag anim-fade">Quem Somos</span>
+                    <h2 class="anim-fade">WB Lima<br><span class="text-accent">Integração de Sistemas</span></h2>
+                    <p class="anim-fade">
+                        A WB Lima é especializada em soluções completas de segurança eletrônica, automação e proteção perimetral, oferecendo projetos personalizados para residências, condomínios e empresas.
+                    </p>
+                    <p class="anim-fade">
+                        Somos <strong>integradores homologados JVA</strong>, referência mundial em cercas elétricas inteligentes, e trabalhamos com marcas renomadas como <strong>Intelbras, Hikvision e Dahua</strong>, garantindo qualidade, tecnologia de ponta e máxima segurança.
+                    </p>
+                    <div class="sobre-features anim-fade">
+                        <div class="sobre-feature">
+                            <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+                            <div>
+                                <strong>Homologação JVA</strong>
+                                <span>Integrador certificado</span>
+                            </div>
+                        </div>
+                        <div class="sobre-feature">
+                            <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                            <div>
+                                <strong>Suporte Dedicado</strong>
+                                <span>Atendimento personalizado</span>
+                            </div>
+                        </div>
+                        <div class="sobre-feature">
+                            <div class="feature-icon"><i class="fas fa-tools"></i></div>
+                            <div>
+                                <strong>Instalação e Manutenção</strong>
+                                <span>Equipe técnica especializada</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sobre-visual anim-fade">
+                    <div class="sobre-card-stack">
+                        <div class="sobre-card-item">
+                            <i class="fas fa-shield-halved"></i>
+                            <span>Proteção Perimetral</span>
+                        </div>
+                        <div class="sobre-card-item">
+                            <i class="fas fa-video"></i>
+                            <span>CFTV Inteligente</span>
+                        </div>
+                        <div class="sobre-card-item">
+                            <i class="fas fa-fingerprint"></i>
+                            <span>Controle de Acesso</span>
+                        </div>
+                        <div class="sobre-card-item">
+                            <i class="fas fa-bell"></i>
+                            <span>Alarmes Monitorados</span>
+                        </div>
+                        <div class="sobre-card-item">
+                            <i class="fas fa-gear"></i>
+                            <span>Automação</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Serviços / Soluções -->
-    <section id="servicos" class="section-padding">
+    <!-- Serviços -->
+    <section id="servicos" class="section section-alt">
         <div class="container">
-            <h2 class="animate-on-scroll">Ecossistema de Segurança</h2>
-            <p class="section-subtitle animate-on-scroll">Mapeamento de riscos e implantação de hardware de classe mundial.</p>
-            
-            <div class="grid">
-                <div class="card tilt-card animate-on-scroll" data-delay="100">
-                    <i class="fas fa-video icon"></i>
-                    <span class="card-tag">RESIDENCIAL</span>
-                    <h3>Portaria Remota</h3>
-                    <p>Portaria eletrônica com porteiros virtuais, liberação automática de acesso e gravação 24h para condomínios e residências.</p>
+            <div class="section-header">
+                <span class="section-tag anim-fade">Nossas Soluções</span>
+                <h2 class="anim-fade">Ecossistema completo de<br><span class="text-accent">segurança eletrônica</span></h2>
+                <p class="section-desc anim-fade">Mapeamento de riscos e implantação de soluções de classe mundial para cada cenário.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card anim-fade" data-delay="0">
+                    <div class="service-img">
+                        <img src="assets/cerca_elétrica.jpg" alt="Cerca Elétrica" loading="lazy">
+                        <div class="service-img-overlay"></div>
+                        <span class="service-number">01</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>Cercas Elétricas</h3>
+                        <p>Cercas elétricas inteligentes com tecnologia JVA. Proteção perimetral com sensores de ruptura, alarme de violação e integração com CFTV.</p>
+                        <ul class="service-tags">
+                            <li>JVA</li>
+                            <li>Perimetral</li>
+                            <li>Alarme</li>
+                        </ul>
+                    </div>
                 </div>
-                
-                <div class="card tilt-card animate-on-scroll" data-delay="200">
-                    <i class="fas fa-shield-halved icon"></i>
-                    <span class="card-tag">INDUSTRIAL</span>
-                    <h3>Segurança Perimetral</h3>
-                    <p>Sistema com cerca elétrica inteligente, sensores de movimento, infravermelho ativo e vídeo verificação por IA.</p>
+
+                <div class="service-card anim-fade" data-delay="100">
+                    <div class="service-img">
+                        <img src="assets/cftv_inteligente.jpg" alt="CFTV Câmeras" loading="lazy">
+                        <div class="service-img-overlay"></div>
+                        <span class="service-number">02</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>CFTV Inteligente</h3>
+                        <p>Câmeras IP 4K/8MP com análise de vídeo por IA, detecção de movimento, reconhecimento facial e acesso remoto via aplicativo.</p>
+                        <ul class="service-tags">
+                            <li>Hikvision</li>
+                            <li>Intelbras</li>
+                            <li>Dahua</li>
+                        </ul>
+                    </div>
                 </div>
-                
-                <div class="card tilt-card animate-on-scroll" data-delay="300">
-                    <i class="fas fa-camera-retro icon"></i>
-                    <span class="card-tag">CONDOMÍNIOS</span>
-                    <h3>CFTV Inteligente</h3>
-                    <p>Câmeras IP 4K/8MP com análise de vídeo, detecção de movimento e acesso remoto seguro via app móvel.</p>
+
+                <div class="service-card anim-fade" data-delay="200">
+                    <div class="service-img">
+                        <img src="assets/controle_de_acesso.jpg" alt="Controle de Acesso" loading="lazy">
+                        <div class="service-img-overlay"></div>
+                        <span class="service-number">03</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>Controle de Acesso</h3>
+                        <p>Biometria facial, impressão digital, cartão RFID/NFC e integração com sistemas de presença e gestão empresarial.</p>
+                        <ul class="service-tags">
+                            <li>Biometria</li>
+                            <li>RFID</li>
+                            <li>Gestão</li>
+                        </ul>
+                    </div>
                 </div>
-                
-                <div class="card tilt-card animate-on-scroll" data-delay="400">
-                    <i class="fas fa-fingerprint icon"></i>
-                    <span class="card-tag">CORPORATIVO</span>
-                    <h3>Controle de Acesso</h3>
-                    <p>Biometria facial, impressão digital, RFID/NFC e integração com sistemas de presença e gestão empresarial.</p>
+
+                <div class="service-card anim-fade" data-delay="300">
+                    <div class="service-img">
+                        <img src="https://plus.unsplash.com/premium_photo-1749338425042-40f6ef510a2d?w=600&h=400&fit=crop&q=80" alt="Alarmes Monitorados" loading="lazy">
+                        <div class="service-img-overlay"></div>
+                        <span class="service-number">04</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>Alarmes Monitorados</h3>
+                        <p>Centrais de alarme com monitoramento 24h, sensores de presença, abertura e quebra de vidro com resposta imediata.</p>
+                        <ul class="service-tags">
+                            <li>24h</li>
+                            <li>Sensores</li>
+                            <li>Resposta</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card anim-fade" data-delay="400">
+                    <div class="service-img">
+                        <img src="assets/automação_residencial.jpg" alt="Automação e Segurança" loading="lazy">
+                        <div class="service-img-overlay"></div>
+                        <span class="service-number">05</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>Automação</h3>
+                        <p>Automação de portões, iluminação, persianas e integração de sistemas para residências e empresas inteligentes.</p>
+                        <ul class="service-tags">
+                            <li>Smart Home</li>
+                            <li>Integração</li>
+                            <li>IoT</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card anim-fade" data-delay="500">
+                    <div class="service-img">
+                        <img src="assets/portaria_remota.png" alt="Portaria Remota" loading="lazy">
+                        <div class="service-img-overlay"></div>
+                        <span class="service-number">06</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>Portaria Remota</h3>
+                        <p>Portaria eletrônica com porteiros virtuais, liberação automática de acesso, interfone IP e gravação 24h para condomínios.</p>
+                        <ul class="service-tags">
+                            <li>Condomínios</li>
+                            <li>Virtual</li>
+                            <li>IP</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio / Casos de Uso (Nova Estrutura) -->
-    <section id="portfolio" class="section-padding" style="background: rgba(10, 31, 68, 0.4);">
+    <!-- Parceiros -->
+    <section id="parceiros" class="section">
         <div class="container">
-            <h2 class="animate-on-scroll">Implantações Técnicas</h2>
-            <p class="section-subtitle animate-on-scroll">Nossa tecnologia protegendo infraestruturas críticas.</p>
-            
+            <div class="section-header">
+                <span class="section-tag anim-fade">Parceiros Tecnológicos</span>
+                <h2 class="anim-fade">Marcas que<br><span class="text-accent">garantem excelência</span></h2>
+                <p class="section-desc anim-fade">Trabalhamos com os maiores fabricantes mundiais de equipamentos de segurança eletrônica.</p>
+            </div>
+
+            <div class="partners-grid anim-fade">
+                <div class="partner-card">
+                    <div class="partner-logo-area">
+                        <img src="assets/logo_jva.png" alt="JVA Cercas Elétricas">
+                    </div>
+                    <div class="partner-info">
+                        <h4>JVA Cercas Elétricas</h4>
+                        <p>Referência mundial em cercas elétricas inteligentes. Somos integradores homologados.</p>
+                        <span class="partner-badge partner-badge-gold"><i class="fas fa-star"></i> Homologado</span>
+                    </div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo-area">
+                        <img src="assets/intelbras_logo.png" alt="Intelbras">
+                    </div>
+                    <div class="partner-info">
+                        <h4>Intelbras</h4>
+                        <p>Líder nacional em segurança eletrônica, redes e comunicação. Qualidade comprovada.</p>
+                        <span class="partner-badge"><i class="fas fa-check-circle"></i> Parceiro Oficial</span>
+                    </div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo-area">
+                        <img src="assets/hikvision_logo.png" alt="Hikvision">
+                    </div>
+                    <div class="partner-info">
+                        <h4>Hikvision</h4>
+                        <p>Líder global em soluções de videomonitoramento e segurança com IA integrada.</p>
+                        <span class="partner-badge"><i class="fas fa-check-circle"></i> Parceiro Oficial</span>
+                    </div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo-area">
+                        <img src="assets/dahua_logo.png" alt="Dahua Technology">
+                    </div>
+                    <div class="partner-info">
+                        <h4>Dahua Technology</h4>
+                        <p>Soluções inovadoras em vídeo, controle de acesso e alarmes inteligentes.</p>
+                        <span class="partner-badge"><i class="fas fa-check-circle"></i> Parceiro Oficial</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag anim-fade">Nossos Projetos</span>
+                <h2 class="anim-fade">Implantações que<br><span class="text-accent">fazem a diferença</span></h2>
+                <p class="section-desc anim-fade">Nossa tecnologia protegendo residências, condomínios e infraestruturas críticas.</p>
+            </div>
+
             <div class="portfolio-grid">
-                <div class="portfolio-item animate-on-scroll" data-delay="100">
-                    <img src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=800&auto=format&fit=crop" alt="Projeto Condomínio">
+                <div class="portfolio-item anim-fade" data-delay="0">
+                    <img src="https://plus.unsplash.com/premium_photo-1680247145693-4b5ef007f148?w=800&h=600&fit=crop&q=80" alt="Condomínio Residencial Moderno" loading="lazy">
                     <div class="portfolio-overlay">
                         <span class="portfolio-badge">Condomínios</span>
-                        <div class="portfolio-info">
-                            <h3>Portaria Remota Hub</h3>
-                            <p>Integração de +40 câmeras 4K e eclusas biométricas com sistema anti-carona.</p>
-                        </div>
+                        <h3>Portaria Remota + CFTV</h3>
+                        <p>Integração de +40 câmeras 4K, eclusa biométrica e sistema anti-carona para condomínio residencial.</p>
                     </div>
                 </div>
 
-                <div class="portfolio-item animate-on-scroll" data-delay="200">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop" alt="Projeto Indústria">
+                <div class="portfolio-item anim-fade" data-delay="150">
+                    <img src="https://plus.unsplash.com/premium_photo-1765128778538-1400bb2a9f75?w=800&h=600&fit=crop&q=80" alt="Perímetro Industrial com Cerca de Segurança" loading="lazy">
                     <div class="portfolio-overlay">
-                        <span class="portfolio-badge">Indústria 4.0</span>
-                        <div class="portfolio-info">
-                            <h3>Monitoramento Térmico</h3>
-                            <p>Câmeras termográficas operando 24/7 para controle de temperatura em maquinários vitais.</p>
-                        </div>
+                        <span class="portfolio-badge">Industrial</span>
+                        <h3>Proteção Perimetral Completa</h3>
+                        <p>Cerca elétrica JVA com sensores de ruptura, câmeras termográficas e controle de acesso integrado.</p>
                     </div>
                 </div>
 
-                <div class="portfolio-item animate-on-scroll" data-delay="300">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" alt="Projeto Corporativo">
+                <div class="portfolio-item anim-fade" data-delay="300">
+                    <img src="https://plus.unsplash.com/premium_photo-1661551615776-1d776a11b8de?w=800&h=600&fit=crop&q=80" alt="Controle de Acesso Corporativo com Catraca" loading="lazy">
                     <div class="portfolio-overlay">
                         <span class="portfolio-badge">Corporativo</span>
-                        <div class="portfolio-info">
-                            <h3>Data Center Security</h3>
-                            <p>Blindagem de acesso ao rack principal com multi-fator de autenticação e sensores antissabotagem.</p>
-                        </div>
+                        <h3>Segurança Empresarial 360°</h3>
+                        <p>Controle de acesso biométrico, catracas inteligentes, CFTV e automação de ambientes corporativos.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Estatísticas de Autoridade -->
-    <section class="stats-section section-padding">
+    <!-- Por que a WB Lima — seção impactante -->
+    <section class="section section-porquewb section-with-particles">
+        <canvas class="bg-particles" aria-hidden="true"></canvas>
+        <div class="porquewb-bg" aria-hidden="true"></div>
         <div class="container">
-            <div class="grid stats-container">
-                <div class="stat-card animate-on-scroll">
-                    <span class="counter" data-target="500">0</span>
-                    <p>Projetos Entregues</p>
+            <div class="section-header">
+                <span class="section-tag anim-fade">Por que a WB Lima?</span>
+                <h2 class="anim-fade">Nosso compromisso é proteger<br><span class="text-accent">o que é mais importante para você</span></h2>
+                <p class="section-desc anim-fade">Unimos tecnologia, confiança e excelência em atendimento. Cada projeto é uma missão.</p>
+            </div>
+
+            <div class="diff-grid">
+                <div class="diff-item anim-fade" data-delay="0">
+                    <div class="diff-number">01</div>
+                    <div class="diff-icon"><i class="fas fa-drafting-compass"></i></div>
+                    <h4>Projetos Sob Medida</h4>
+                    <p>Cada ambiente é único. Desenvolvemos projetos personalizados após análise técnica detalhada do seu cenário, garantindo a solução ideal.</p>
                 </div>
-                <div class="stat-card animate-on-scroll" data-delay="150">
-                    <span class="counter" data-target="99">0</span>
-                    <p>% Uptime de Sistemas</p>
+                <div class="diff-item anim-fade" data-delay="100">
+                    <div class="diff-number">02</div>
+                    <div class="diff-icon"><i class="fas fa-microchip"></i></div>
+                    <h4>Tecnologia de Ponta</h4>
+                    <p>Equipamentos das melhores marcas mundiais — JVA, Intelbras, Hikvision e Dahua — com IA embarcada e conectividade avançada.</p>
                 </div>
-                <div class="stat-card animate-on-scroll" data-delay="300">
-                    <span class="counter" data-target="24">0</span>
-                    <p>Horas de Monitoramento</p>
+                <div class="diff-item anim-fade" data-delay="200">
+                    <div class="diff-number">03</div>
+                    <div class="diff-icon"><i class="fas fa-user-shield"></i></div>
+                    <h4>Equipe Certificada</h4>
+                    <p>Técnicos treinados e certificados pelos fabricantes para instalação, configuração e manutenção de todos os sistemas.</p>
                 </div>
+                <div class="diff-item anim-fade" data-delay="300">
+                    <div class="diff-number">04</div>
+                    <div class="diff-icon"><i class="fas fa-headset"></i></div>
+                    <h4>Suporte Contínuo</h4>
+                    <p>Manutenção preventiva e corretiva com atendimento ágil para garantir o funcionamento ininterrupto da sua segurança.</p>
+                </div>
+            </div>
+
+            <div class="diff-cta anim-fade">
+                <a href="#contato" class="btn btn-primary btn-lg">
+                    <i class="fas fa-shield-halved"></i> Proteja Seu Patrimônio Agora
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Contato -->
-    <section id="contato" class="section-padding">
+    <section id="contato" class="section section-alt section-with-particles">
+        <canvas class="bg-particles" aria-hidden="true"></canvas>
         <div class="container">
-            <h2 class="animate-on-scroll">Inicie Seu Projeto</h2>
-            <p class="section-subtitle animate-on-scroll">Engenheiros de segurança prontos para analisar seu cenário.</p>
-            
-            <div class="contact-info animate-on-scroll" data-delay="100">
-                <h3>Contato Direto</h3>
-                <p><strong>Responsável:</strong> Wellington Lima</p>
-                <p><i class="fas fa-phone"></i> WhatsApp: <a href="https://wa.me/5511947772127">(11) 94777-2127</a></p>
-                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:wellington@wblima.com.br">wellington@wblima.com.br</a></p>
+            <div class="section-header">
+                <span class="section-tag anim-fade">Fale Conosco</span>
+                <h2 class="anim-fade">Solicite uma<br><span class="text-accent">avaliação técnica gratuita</span></h2>
+                <p class="section-desc anim-fade">Nossa equipe está pronta para analisar seu cenário e propor a solução ideal.</p>
             </div>
-            <div class="contact-form-wrapper animate-on-scroll" data-delay="200">
-                <form class="glass-form">
-                    <h3>Ou Preencha o Formulário</h3>
 
-                    <div class="form-group">
-                        <input type="text" placeholder="Nome Completo" required>
-                        <input type="email" placeholder="E-mail Corporativo" required>
+            <div class="contact-grid">
+                <div class="contact-info-panel anim-fade">
+                    <div class="contact-card-item">
+                        <div class="contact-icon"><i class="fas fa-user"></i></div>
+                        <div>
+                            <strong>Responsável</strong>
+                            <p>Wellington Lima</p>
+                        </div>
                     </div>
-                    <div class="form-group full-width">
-                        <input type="tel" placeholder="Telefone / WhatsApp" required>
+                    <div class="contact-card-item">
+                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <a href="https://wa.me/5511947772127">(11) 94777-2127</a>
+                        </div>
                     </div>
-                    <div class="form-group full-width">
-                        <textarea rows="4" placeholder="Descreva brevemente sua necessidade de segurança..." required></textarea>
+                    <div class="contact-card-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <strong>E-mail</strong>
+                            <a href="mailto:wellington@wblima.com.br">wellington@wblima.com.br</a>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary full-width">Solicitar Avaliação Técnica</button>
-                </form>
+                    <div class="contact-card-item">
+                        <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <strong>Atendimento</strong>
+                            <p>Seg-Sex: 8h - 18h | Sáb: 8h - 12h</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-cta-whatsapp">
+                        <a href="https://wa.me/5511947772127" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form-panel anim-fade" data-delay="150">
+                    <form class="contact-form" id="contactForm">
+                        <h3>Enviar Mensagem</h3>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="nome">Nome completo</label>
+                                <input type="text" id="nome" name="nome" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label for="telefone">Telefone / WhatsApp</label>
+                            <input type="tel" id="telefone" name="telefone" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="servico">Serviço de interesse</label>
+                            <select id="servico" name="servico">
+                                <option value="">Selecione...</option>
+                                <option value="Cerca Elétrica">Cerca Elétrica</option>
+                                <option value="CFTV">CFTV / Câmeras</option>
+                                <option value="Controle de Acesso">Controle de Acesso</option>
+                                <option value="Alarme Monitorado">Alarme Monitorado</option>
+                                <option value="Automação">Automação</option>
+                                <option value="Portaria Remota">Portaria Remota</option>
+                                <option value="Projeto Completo">Projeto Completo</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="mensagem">Descreva sua necessidade</label>
+                            <textarea id="mensagem" name="mensagem" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -184,19 +507,49 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 WB Lima Segurança Eletrônica Premium. Todos os direitos reservados.</p>
-            <p style="font-size: 0.85rem; margin-top: 0.5rem;">Desenvolvido com tecnologia e precisão.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="WB Lima" class="footer-logo">
+                    <p>Unindo tecnologia, confiança e excelência em atendimento para proteger o que é mais importante para você.</p>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Soluções</h4>
+                    <ul>
+                        <li><a href="#servicos">Cercas Elétricas</a></li>
+                        <li><a href="#servicos">CFTV Inteligente</a></li>
+                        <li><a href="#servicos">Controle de Acesso</a></li>
+                        <li><a href="#servicos">Alarmes Monitorados</a></li>
+                        <li><a href="#servicos">Automação</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Atendemos</h4>
+                    <ul>
+                        <li>Residências</li>
+                        <li>Condomínios</li>
+                        <li>Empresas</li>
+                        <li>Indústrias</li>
+                        <li>Comércios</li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="https://wa.me/5511947772127">(11) 94777-2127</a></li>
+                        <li><a href="mailto:wellington@wblima.com.br">wellington@wblima.com.br</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WB Lima Integração de Sistemas. Todos os direitos reservados.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Botão Flutuante WhatsApp -->
-            <div class="whatsapp-sticky">
-        <a href="https://wa.me/5511947772127" target="_blank" rel="noopener noreferrer" title="Fale pelo WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-            <span>Chat</span>
-        </a>
-    </div>
-
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5511947772127" target="_blank" rel="noopener noreferrer" class="whatsapp-float" title="Fale pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- Scripts -->
     <script src="script.js"></script>

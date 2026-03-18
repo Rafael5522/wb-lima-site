@@ -1,380 +1,346 @@
 /**
- * WB LIMA - Segurança Eletrônica
- * Arquivo de Scripts Principal
- * Implementação puramente Vanilla JS (Sem jQuery ou frameworks)
+ * WB Lima — Integração de Sistemas de Segurança Eletrônica
+ * Main Script — Vanilla JS
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // ==========================================================================
-    // SCROLL PROGRESS BAR
-    // ==========================================================================
-    const progressBar = document.createElement('div');
-    progressBar.className = 'scroll-progress';
-    document.body.appendChild(progressBar);
 
-    window.addEventListener('scroll', () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        progressBar.style.width = scrolled + '%';
+  // ========================================================================
+  // MOBILE MENU
+  // ========================================================================
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  const header = document.getElementById('header');
+  const navAnchors = document.querySelectorAll('.nav-links a');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+
+  navAnchors.forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
     });
+  });
 
-    // ==========================================================================
-    // 1. MENU MOBILE (HAMBÚRGUER) & STICKY HEADER
-    // ==========================================================================
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const header = document.getElementById('header');
-    const navItems = document.querySelectorAll('.nav-links li a');
-
-    // Toggle Menu
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const icon = hamburger.querySelector('i');
-        if(navLinks.classList.contains('active')) {
-        icon.classList.replace('fas fa-bars', 'fas fa-times');
+  // ========================================================================
+  // STICKY HEADER
+  // ========================================================================
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      header.classList.add('scrolled');
     } else {
-        icon.classList.replace('fas fa-times', 'fas fa-bars');
+      header.classList.remove('scrolled');
     }
-    });
+  }, { passive: true });
 
-    // Fechar menu ao clicar em um link
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            hamburger.querySelector('i').classList.replace('fa-times', 'fa-bars');
-        });
+  // ========================================================================
+  // SMOOTH SCROLL
+  // ========================================================================
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const offset = 100;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
     });
+  });
 
-    // Sticky Header Effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
+  // ========================================================================
+  // SCROLL ANIMATIONS (Intersection Observer)
+  // ========================================================================
+  const animElements = document.querySelectorAll('.anim-fade');
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay) || 0;
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  animElements.forEach(el => observer.observe(el));
+
+  // ========================================================================
+  // COUNTER ANIMATION
+  // ========================================================================
+  const counters = document.querySelectorAll('.counter');
+  let hasCounted = false;
+
+  function runCounters() {
+    if (hasCounted) return;
+    hasCounted = true;
+
+    counters.forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const duration = 2000;
+      const fps = 30;
+      const totalFrames = Math.round(duration / (1000 / fps));
+      const inc = target / totalFrames;
+      let current = 0;
+
+      function tick() {
+        current += inc;
+        if (current < target) {
+          el.textContent = Math.ceil(current);
+          setTimeout(tick, 1000 / fps);
         } else {
-            header.classList.remove('scrolled');
+          el.textContent = target;
         }
+      }
+      tick();
     });
+  }
 
-    // ==========================================================================
-    // 2. SCROLL SUAVE (SMOOTH SCROLLING) CUSTOMIZADO
-    // ==========================================================================
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if(targetElement) {
-                // Considera o tamanho do header fixo
-                const headerOffset = 80; 
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  const statsEl = document.querySelector('.hero-stats');
+  if (statsEl) {
+    const statsObs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) runCounters();
+    }, { threshold: 0.5 });
+    statsObs.observe(statsEl);
+  }
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
+  // ========================================================================
+  // CONTACT FORM → WHATSAPP
+  // ========================================================================
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const nome = fd.get('nome') || 'Não informado';
+      const email = fd.get('email') || 'Não informado';
+      const tel = fd.get('telefone') || 'Não informado';
+      const servico = fd.get('servico') || 'Não selecionado';
+      const msg = fd.get('mensagem') || '';
+
+      const text = [
+        `*Novo contato via site WB Lima*`,
+        ``,
+        `*Nome:* ${nome}`,
+        `*E-mail:* ${email}`,
+        `*Telefone:* ${tel}`,
+        `*Serviço:* ${servico}`,
+        msg ? `*Mensagem:* ${msg}` : '',
+      ].filter(Boolean).join('\n');
+
+      window.open(`https://wa.me/5511947772127?text=${encodeURIComponent(text)}`, '_blank');
+      form.reset();
     });
+  }
 
-    // ==========================================================================
-    // 3. ANIMAÇÕES AO ROLAR A PÁGINA (INTERSECTION OBSERVER)
-    // ==========================================================================
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    
-    // Configuração do Observer
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15 // Dispara quando 15% do elemento é visível
-    };
+  // ========================================================================
+  // PARTICLE NETWORK SYSTEM — Reusable across multiple sections
+  // Royal Blue palette matching logo (#2563eb)
+  // ========================================================================
+  const isMobile = window.innerWidth < 768;
 
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
+  // Global mouse tracking
+  let mouse = { x: null, y: null };
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  }, { passive: true });
+  window.addEventListener('mouseout', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  // Particle class
+  class Particle {
+    constructor(w, h, speed) {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.vx = (Math.random() - 0.5) * speed;
+      this.vy = (Math.random() - 0.5) * speed;
+      this.size = Math.random() * 1.5 + 0.5;
+    }
+
+    update(w, h, mouseLocal) {
+      if (this.x > w || this.x < 0) this.vx *= -1;
+      if (this.y > h || this.y < 0) this.vy *= -1;
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (mouseLocal.x !== null) {
+        const dx = mouseLocal.x - this.x;
+        const dy = mouseLocal.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          this.x -= (dx / dist) * 1.2;
+          this.y -= (dy / dist) * 1.2;
+        }
+      }
+    }
+  }
+
+  // ParticleCanvas manager for each canvas
+  class ParticleCanvas {
+    constructor(canvas, config = {}) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      this.particles = [];
+      this.isActive = false;
+      this.animId = null;
+
+      // Config with defaults — secondary canvases are subtler
+      this.count = config.count || (isMobile ? 20 : 45);
+      this.maxDist = config.maxDist || (isMobile ? 100 : 140);
+      this.speed = config.speed || 0.25;
+      this.dotOpacity = config.dotOpacity || 0.3;
+      this.lineOpacity = config.lineOpacity || 0.15;
+      this.gridOpacity = config.gridOpacity || 0.02;
+      this.showGrid = config.showGrid !== undefined ? config.showGrid : true;
+
+      this.init();
+
+      // Intersection Observer — only animate when visible
+      const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Pega o delay se existir via dataset (ex: data-delay="200")
-                const delay = entry.target.getAttribute('data-delay') || 0;
-                
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, delay);
-                
-                // Para de observar depois que animou a primeira vez
-                observer.unobserve(entry.target);
-            }
+          if (entry.isIntersecting && !this.isActive) {
+            this.start();
+          } else if (!entry.isIntersecting && this.isActive) {
+            this.stop();
+          }
         });
-    }, observerOptions);
-
-    animatedElements.forEach(el => scrollObserver.observe(el));
-
-    // ==========================================================================
-    // 4. CONTADOR ANIMADO (SOBRE NÓS)
-    // ==========================================================================
-    const counters = document.querySelectorAll('.counter');
-    let hasCounted = false;
-
-    const runCounters = () => {
-        counters.forEach(counter => {
-            counter.innerText = '0';
-            const target = +counter.getAttribute('data-target');
-            
-            // Duração fixa para todos terminarem juntos, independentemente do valor alvo
-            const duration = 2000; // 2 segundos
-            const frameRate = 30; // Atualizações por segundo (aprox)
-            const totalFrames = Math.round(duration / (1000 / frameRate));
-            const increment = target / totalFrames;
-            
-            let currentCount = 0;
-            
-            const updateCounter = () => {
-                currentCount += increment;
-                if (currentCount < target) {
-                    counter.innerText = Math.ceil(currentCount);
-                    setTimeout(updateCounter, 1000 / frameRate);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-            
-            updateCounter();
-        });
-    };
-
-    // Observer específico para a seção de estatísticas
-const statsSection = document.querySelector('.stats-section');
-    if (statsSection) {
-    const statsObserver = new IntersectionObserver((entries) => {
-            const entry = entries[0];
-            if (entry.isIntersecting && !hasCounted) {
-                runCounters();
-                hasCounted = true;
-            }
-        }, { threshold: 0.5 });
-        
-        statsObserver.observe(statsSection);
+      }, { threshold: 0.05 });
+      obs.observe(canvas.parentElement);
     }
 
-    // Form submit WhatsApp handler
-    const contactForm = document.querySelector('.glass-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(contactForm);
-            const nome = formData.get('input[name="text"]') || 'não informado';
-            const email = formData.get('input[name="email"]') || 'não informado';
-            const tel = formData.get('input[name="tel"]') || 'não informado';
-            const msg = formData.get('textarea') || 'Consulta via formulário';
-            const message = `Novo lead!\n\n👤 Nome: ${nome}\n📧 Email: ${email}\n📱 Tel: ${tel}\n💬 Mensagem: ${msg}`;
-            window.open(`https://wa.me/5511947772127?text=${encodeURIComponent(message)}`, '_blank');
-            contactForm.reset();
-        });
+    init() {
+      const parent = this.canvas.parentElement;
+      this.w = this.canvas.width = parent.clientWidth;
+      this.h = this.canvas.height = parent.clientHeight;
+      this.particles = [];
+      for (let i = 0; i < this.count; i++) {
+        this.particles.push(new Particle(this.w, this.h, this.speed));
+      }
     }
 
-
-    // ==========================================================================
-    // 5. EFEITO PARALLAX SIMPLES NO HERO
-    // ==========================================================================
-    const heroGlass = document.querySelector('.hero-glass');
-    
-    window.addEventListener('mousemove', (e) => {
-        if (!heroGlass) return;
-        
-        // Pega as coordenadas do mouse no viewport
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
-        
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-        
-        // Calcula a variação (-1 a 1)
-        const moveX = (mouseX / windowWidth) - 0.5;
-        const moveY = (mouseY / windowHeight) - 0.5;
-        
-        // Aplica transform leve
-        const strength = 15; // Intensidade do movimento em pixels
-        heroGlass.style.transform = `translate(${moveX * strength}px, ${moveY * strength}px)`;
-    });
-
-    // ==========================================================================
-    // 6. BACKGROUND ANIMADO TECNOLÓGICO (NETWORK PARTICLES VIA CANVAS)
-    // ==========================================================================
-    const canvas = document.getElementById('network-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        
-        // Variáveis de dimensão e sistema
-        let width, height;
-        let particles = [];
-        
-        // Configurações das partículas
-        const config = {
-            particleCount: 80, // Quantidade base (ajustada por tamanho da tela)
-            particleColor: 'rgba(46, 163, 242, 0.4)', // Azul claro transparente
-            lineColor: 'rgba(46, 163, 242, 0.15)',
-            maxDistance: 150, // Distância máxima para conectar linhas
-            particleSpeed: 0.5,
-            particleSize: 1.5
-        };
-
-        // Objeto mouse para interação
-        let mouse = {
-            x: null,
-            y: null,
-            radius: 150
-        };
-
-        // Rastrear mouse sobre o canvas
-        window.addEventListener('mousemove', function(event) {
-            mouse.x = event.x;
-            mouse.y = event.y;
-        });
-
-        // Limpar posições do mouse ao sair da tela
-        window.addEventListener('mouseout', function() {
-            mouse.x = undefined;
-            mouse.y = undefined;
-        });
-
-        // Classe Partícula
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                // Velocidade vetorial (-0.5 a 0.5 * speed)
-                this.vx = (Math.random() - 0.5) * config.particleSpeed;
-                this.vy = (Math.random() - 0.5) * config.particleSpeed;
-                this.size = Math.random() * config.particleSize + 0.5;
-            }
-
-            // Desenhar no canvas
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = config.particleColor;
-                ctx.fill();
-            }
-
-            // Atualizar posição
-            update() {
-                // Rebatimento nas bordas
-                if (this.x > width || this.x < 0) this.vx = -this.vx;
-                if (this.y > height || this.y < 0) this.vy = -this.vy;
-
-                // Move
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Interação com mouse (empurrar levemente)
-                if (mouse.x != null && mouse.y != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < mouse.radius) {
-                        const forceDirectionX = dx / distance;
-                        const forceDirectionY = dy / distance;
-                        // Foge do mouse
-                        this.x -= forceDirectionX * 1;
-                        this.y -= forceDirectionY * 1;
-                    }
-                }
-                this.draw();
-            }
-        }
-
-        // Função para conectar partículas com linhas
-        function connect() {
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a; b < particles.length; b++) {
-                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) + 
-                                   ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
-                    
-                    if (distance < (config.maxDistance * config.maxDistance)) {
-                        // Calcula opacidade baseada na distância
-                        let opacity = 1 - (distance / (config.maxDistance * config.maxDistance));
-                        ctx.strokeStyle = `rgba(46, 163, 242, ${opacity * 0.3})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        // Inicialização do Canvas
-        function init() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            particles = [];
-            
-            // Ajusta quantidade de partículas baseado no tamanho da tela para não pesar mobile
-            const count = window.innerWidth < 768 ? config.particleCount / 2 : config.particleCount;
-            
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        // Loop de Animação
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-            }
-            connect();
-            
-            requestAnimationFrame(animate);
-        }
-
-        // Handle Resize Responsivo
-        window.addEventListener('resize', function() {
-            init();
-        });
-
-        // Start
-        init();
-        animate();
+    getLocalMouse() {
+      if (mouse.x === null) return { x: null, y: null };
+      const rect = this.canvas.getBoundingClientRect();
+      return {
+        x: mouse.x - rect.left,
+        y: mouse.y - rect.top
+      };
     }
 
-    // ==========================================================================
-    // 7. EFEITO 3D TILT AVANÇADO NOS CARDS DE SERVIÇO
-    // ==========================================================================
-    const tiltCards = document.querySelectorAll('.tilt-card');
-    
-    tiltCards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            // Calcula a rotação dinâmica pelo ponteiro do mouse
-            const rotateX = ((y - centerY) / centerY) * -10;
-            const rotateY = ((x - centerX) / centerX) * 10;
-            
-            card.style.transition = 'none'; // Desabilita smooth transition durante hover frame
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            
-            // Movimenta o brilho da borda e sombra dinamicamente na oposição do mouse
-            card.style.borderColor = `rgba(46, 163, 242, 0.6)`;
-            card.style.boxShadow = `0 35px 60px rgba(0,0,0,0.6), ${rotateY * -1}px ${rotateX * -1}px 35px rgba(46, 163, 242, 0.2)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            // Reseta posições base com mola suave ao sair
-            card.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-            card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
-            card.style.borderColor = `var(--glass-border)`;
-            card.style.boxShadow = `var(--shadow-soft)`;
-        });
-    });
+    draw() {
+      const { ctx, w, h, particles } = this;
+      ctx.clearRect(0, 0, w, h);
+
+      // Grid
+      if (this.showGrid) {
+        ctx.strokeStyle = `rgba(37, 99, 235, ${this.gridOpacity})`;
+        ctx.lineWidth = 0.5;
+        const gs = 80;
+        for (let x = 0; x < w; x += gs) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, h);
+          ctx.stroke();
+        }
+        for (let y = 0; y < h; y += gs) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(w, y);
+          ctx.stroke();
+        }
+      }
+
+      const localMouse = this.getLocalMouse();
+
+      // Particles
+      for (const p of particles) {
+        p.update(w, h, localMouse);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(37, 99, 235, ${this.dotOpacity})`;
+        ctx.fill();
+      }
+
+      // Connections
+      const max2 = this.maxDist * this.maxDist;
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a + 1; b < particles.length; b++) {
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
+          const dist2 = dx * dx + dy * dy;
+          if (dist2 < max2) {
+            const opacity = (1 - dist2 / max2) * this.lineOpacity;
+            ctx.strokeStyle = `rgba(37, 99, 235, ${opacity})`;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    animate() {
+      if (!this.isActive) return;
+      this.draw();
+      this.animId = requestAnimationFrame(() => this.animate());
+    }
+
+    start() {
+      this.isActive = true;
+      this.animate();
+    }
+
+    stop() {
+      this.isActive = false;
+      if (this.animId) cancelAnimationFrame(this.animId);
+    }
+  }
+
+  // ========================================================================
+  // INITIALIZE ALL CANVASES
+  // ========================================================================
+
+  const heroCanvas = document.getElementById('grid-canvas');
+  let resizeTimer;
+
+  // Store instances for resize
+  const instances = [];
+  if (heroCanvas) {
+    instances.push(new ParticleCanvas(heroCanvas, {
+      count: isMobile ? 35 : 70,
+      maxDist: isMobile ? 120 : 160,
+      speed: 0.3,
+      dotOpacity: 0.4,
+      lineOpacity: 0.2,
+      gridOpacity: 0.025,
+      showGrid: true
+    }));
+  }
+  document.querySelectorAll('.bg-particles').forEach(canvas => {
+    instances.push(new ParticleCanvas(canvas, {
+      count: isMobile ? 15 : 35,
+      maxDist: isMobile ? 100 : 130,
+      speed: 0.2,
+      dotOpacity: 0.2,
+      lineOpacity: 0.1,
+      gridOpacity: 0.015,
+      showGrid: true
+    }));
+  });
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      instances.forEach(inst => inst.init());
+    }, 300);
+  });
 });
