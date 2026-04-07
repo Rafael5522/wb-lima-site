@@ -1295,10 +1295,6 @@ textarea { resize: vertical; }
     width: calc(100% - 48px);
   }
 
-  .logo-text {
-    display: inline;
-  }
-
   .hero-title {
     font-size: clamp(1.8rem, 5vw, 2.5rem);
   }
