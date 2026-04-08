@@ -45,7 +45,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ────────────────────────────────────────────────────────────────────
-  // 2. SMOOTH ANCHOR SCROLL
+  // 2. ATUALIZAR ANO AUTOMATICAMENTE NO FOOTER
+  // ────────────────────────────────────────────────────────────────────
+  const yearElement = document.getElementById('current-year');
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+
+  // ────────────────────────────────────────────────────────────────────
+  // 3. SMOOTH ANCHOR SCROLL
   // ────────────────────────────────────────────────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
