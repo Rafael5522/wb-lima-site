@@ -195,8 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
       // Limpar erros anteriores
       document.querySelectorAll('.form-group.error').forEach(group => {
         group.classList.remove('error');
@@ -220,25 +218,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
 
-      if (isValid) {
-        // Mostrar sucesso
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalHTML = submitBtn.innerHTML;
-        
-        submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado com sucesso!';
-        submitBtn.style.background = '#00a86b';
-        
-        // Aqui você pode integrar com seu backend/API
-        console.log('Formulário enviado:', new FormData(this));
-        
-        // Limpar formulário
-        this.reset();
-        
-        setTimeout(() => {
-          submitBtn.innerHTML = originalHTML;
-          submitBtn.style.background = '';
-        }, 3000);
+      if (!isValid) {
+        e.preventDefault();
       }
+      // Se válido, deixa o formulário ir para FormSubmit
     });
   }
 
