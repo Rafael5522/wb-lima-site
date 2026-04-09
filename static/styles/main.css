@@ -907,6 +907,25 @@ a:hover {
   margin-top: var(--space-2);
 }
 
+.form-feedback {
+  min-height: 1.25rem;
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.form-feedback.is-success {
+  color: var(--color-success);
+}
+
+.form-feedback.is-error {
+  color: var(--color-error);
+}
+
+.form-feedback.is-warning {
+  color: var(--color-warning);
+}
+
 /* ============================================================================
    12. ANIMATIONS
    ============================================================================ */

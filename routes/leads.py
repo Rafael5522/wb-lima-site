@@ -62,17 +62,13 @@ def validate_lead_data(data):
 def send_lead_email(lead):
     """Envia email para o novo lead"""
     try:
-        from flask_mailman import Message
-        
         if not current_app.config['MAIL_USERNAME']:
             current_app.logger.warning('Email não configurado - pulando envio')
             return False
-        
+
         # Email para o cliente
-        customer_msg = Message(
-            subject='Recebemos sua solicitação - WB Lima Segurança',
-            recipients=[lead.email],
-            body=f'''
+        customer_subject = 'Recebemos sua solicitação - WB Lima Segurança'
+        customer_body = f'''
 Olá {lead.name},
 
 Obrigado por entrar em contato com a WB Lima!
@@ -88,8 +84,8 @@ Para contato urgente, ligue: (11) 94777-2127
 
 Atenciosamente,
 WB Lima Segurança Eletrônica
-''',
-            html=f'''
+'''
+        customer_html = f'''
 <html>
     <body style="font-family: Arial, sans-serif; line-height: 1.6;">
         <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -112,13 +108,10 @@ WB Lima Segurança Eletrônica
     </body>
 </html>
 '''
-        )
-        
+
         # Email para a empresa
-        admin_msg = Message(
-            subject=f'Novo Lead: {lead.name} - {lead.service_type}',
-            recipients=[current_app.config['MAIL_DEFAULT_SENDER']],
-            body=f'''
+        admin_subject = f'Novo Lead: {lead.name} - {lead.service_type}'
+        admin_body = f'''
 Novo lead recebido!
 
 Nome: {lead.name}
@@ -132,8 +125,8 @@ Mensagem:
 {lead.message or '(sem mensagem)'}
 
 Responda em: https://wblima.com.br/admin
-''',
-            html=f'''
+'''
+        admin_html = f'''
 <html>
     <body style="font-family: Arial, sans-serif; line-height: 1.6;">
         <div style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f5;">
@@ -158,10 +151,25 @@ Responda em: https://wblima.com.br/admin
     </body>
 </html>
 '''
-        )
         
-        current_app.mail.send(customer_msg)
-        current_app.mail.send(admin_msg)
+        current_app.mail.send_mail(
+            subject=customer_subject,
+            message=customer_body,
+            from_email=current_app.config['MAIL_DEFAULT_SENDER'],
+            recipient_list=[lead.email],
+            html_message=customer_html,
+            fail_silently=False
+        )
+
+        current_app.mail.send_mail(
+            subject=admin_subject,
+            message=admin_body,
+            from_email=current_app.config['MAIL_DEFAULT_SENDER'],
+            recipient_list=[current_app.config['MAIL_DEFAULT_SENDER']],
+            html_message=admin_html,
+            fail_silently=False
+        )
+
         return True
     
     except Exception as e:

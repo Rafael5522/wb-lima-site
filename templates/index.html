@@ -721,21 +721,23 @@
         <div class="contato-grid">
           <!-- Form -->
           <div class="contato-form slide-up" data-delay="150">
-            <form id="contact-form" class="form" action="https://formsubmit.co/contato@wblima.com.br" method="POST" novalidate>
-              <input type="hidden" name="_cc" value="wellington@wblima.com.br">
+            <form id="contact-form" class="form" action="{{ url_for('leads.create_lead') }}" method="POST" novalidate>
               <div class="form-group">
                 <label for="form-name">Seu Nome *</label>
                 <input type="text" id="form-name" name="name" required placeholder="Digite seu nome">
+                <span class="error-message" aria-live="polite"></span>
               </div>
 
               <div class="form-group">
                 <label for="form-email">Email *</label>
                 <input type="email" id="form-email" name="email" required placeholder="seu@email.com">
+                <span class="error-message" aria-live="polite"></span>
               </div>
 
               <div class="form-group">
                 <label for="form-phone">Telefone *</label>
                 <input type="tel" id="form-phone" name="phone" required placeholder="(11) 99999-9999">
+                <span class="error-message" aria-live="polite"></span>
               </div>
 
               <div class="form-group">
@@ -750,18 +752,21 @@
                   <option value="consultoria">Consultoria</option>
                   <option value="outro">Outro</option>
                 </select>
+                <span class="error-message" aria-live="polite"></span>
               </div>
 
               <div class="form-group">
                 <label for="form-message">Mensagem *</label>
                 <textarea id="form-message" name="message" rows="5" required placeholder="Descreva sua necessidade..."></textarea>
+                <span class="error-message" aria-live="polite"></span>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-full btn-lg">
+              <button id="contact-submit-btn" type="submit" class="btn btn-primary btn-full btn-lg">
                 <i class="fas fa-send"></i>
                 Enviar Mensagem
               </button>
 
+              <p id="form-feedback" class="form-feedback" role="status" aria-live="polite"></p>
               <p class="form-disclaimer">Responderemos em até 2 horas úteis</p>
             </form>
           </div>
