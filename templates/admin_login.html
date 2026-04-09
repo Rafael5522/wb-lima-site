@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | WB Lima</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/admin.css') }}">
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f1e36 0%, #1f3f75 45%, #d4af37 100%);
+            padding: 24px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 440px;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+            padding: 28px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-header img {
+            width: 74px;
+            height: auto;
+            margin: 0 auto 12px;
+        }
+
+        .login-header h1 {
+            margin: 0 0 6px;
+            font-size: 24px;
+            color: #1f2937;
+        }
+
+        .login-header p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.16);
+        }
+
+        .login-error {
+            display: none;
+            margin-bottom: 14px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .login-error.show {
+            display: block;
+        }
+
+        .login-footer {
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .login-footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <main class="login-page">
+        <section class="login-card" aria-labelledby="login-title">
+            <header class="login-header">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="WB Lima">
+                <h1 id="login-title">Painel Administrativo</h1>
+                <p>Entre com a senha do administrador</p>
+            </header>
+
+            <form id="admin-login-form" autocomplete="off">
+                <div id="login-error" class="login-error" role="alert"></div>
+
+                <div class="form-group">
+                    <label for="admin-password">Senha</label>
+                    <input id="admin-password" name="password" type="password" required placeholder="Digite sua senha">
+                </div>
+
+                <button id="login-btn" class="btn btn-primary btn-full" type="submit">
+                    <i class="fas fa-right-to-bracket"></i>
+                    Entrar
+                </button>
+            </form>
+
+            <footer class="login-footer">
+                <a href="{{ url_for('index') }}">Voltar para o site</a>
+            </footer>
+        </section>
+    </main>
+
+    <script>
+        (function () {
+            const form = document.getElementById('admin-login-form');
+            const passwordInput = document.getElementById('admin-password');
+            const loginBtn = document.getElementById('login-btn');
+            const errorBox = document.getElementById('login-error');
+
+            function showError(message) {
+                errorBox.textContent = message;
+                errorBox.classList.add('show');
+            }
+
+            function clearError() {
+                errorBox.textContent = '';
+                errorBox.classList.remove('show');
+            }
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+                clearError();
+
+                const password = (passwordInput.value || '').trim();
+                if (!password) {
+                    showError('Informe a senha para continuar.');
+                    return;
+                }
+
+                loginBtn.disabled = true;
+                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Entrando...';
+
+                try {
+                    const response = await fetch('/admin/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ password: password })
+                    });
+
+                    const payload = await response.json();
+                    if (!response.ok || !payload.success) {
+                        showError(payload.message || payload.error || 'Falha ao autenticar.');
+                        return;
+                    }
+
+                    window.location.href = '/admin/';
+                } catch (error) {
+                    showError('Erro de conexao. Tente novamente em instantes.');
+                } finally {
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = '<i class="fas fa-right-to-bracket"></i> Entrar';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

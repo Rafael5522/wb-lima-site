@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | WB Lima</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/admin.css') }}">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="WB Lima" class="sidebar-logo">
+                <h2>WB Lima</h2>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Navegacao admin">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item" data-section="leads">
+                    <i class="fas fa-address-book"></i>
+                    Leads
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <i class="fas fa-gear"></i>
+                    Configuracoes
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="logout-btn" type="button">
+                    <i class="fas fa-right-from-bracket"></i>
+                    Sair
+                </button>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1 id="section-title">Dashboard</h1>
+                <div class="admin-user">
+                    <i class="fas fa-circle-user"></i>
+                    <span>Administrador</span>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <section id="dashboard-section" class="admin-section active">
+                    <div class="stats-grid">
+                        <article class="stat-box">
+                            <div class="stat-icon" style="background:#4f46e5;">
+                                <i class="fas fa-address-book"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="stat-total">0</h3>
+                                <p>Total de leads</p>
+                            </div>
+                        </article>
+
+                        <article class="stat-box">
+                            <div class="stat-icon" style="background:#2563eb;">
+                                <i class="fas fa-calendar-day"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="stat-today">0</h3>
+                                <p>Leads hoje</p>
+                            </div>
+                        </article>
+
+                        <article class="stat-box">
+                            <div class="stat-icon" style="background:#16a34a;">
+                                <i class="fas fa-envelope-circle-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="stat-sent">0</h3>
+                                <p>Email enviado</p>
+                            </div>
+                        </article>
+
+                        <article class="stat-box">
+                            <div class="stat-icon" style="background:#ea580c;">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="stat-pending">0</h3>
+                                <p>Pendentes</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="dashboard-actions">
+                        <button id="refresh-stats-btn" class="btn btn-secondary" type="button">
+                            <i class="fas fa-rotate"></i>
+                            Atualizar estatisticas
+                        </button>
+                        <button id="export-leads-btn" class="btn btn-primary" type="button">
+                            <i class="fas fa-file-csv"></i>
+                            Exportar CSV
+                        </button>
+                    </div>
+                </section>
+
+                <section id="leads-section" class="admin-section">
+                    <div class="section-actions">
+                        <input id="search-leads" class="search-input" type="search" placeholder="Buscar por nome, email ou telefone">
+
+                        <select id="filter-service" class="filter-select" aria-label="Filtrar por servico">
+                            <option value="">Todos os servicos</option>
+                            <option value="cerca">Cerca eletrica</option>
+                            <option value="cftv">CFTV inteligente</option>
+                            <option value="acesso">Controle de acesso</option>
+                            <option value="infraestrutura">Infraestrutura</option>
+                            <option value="automacao">Automacao residencial</option>
+                            <option value="consultoria">Consultoria</option>
+                            <option value="outro">Outro</option>
+                        </select>
+
+                        <select id="filter-email" class="filter-select" aria-label="Filtrar por envio de email">
+                            <option value="">Todos</option>
+                            <option value="true">Email enviado</option>
+                            <option value="false">Pendente</option>
+                        </select>
+                    </div>
+
+                    <div id="leads-container" class="leads-container">
+                        <p class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            Carregando leads...
+                        </p>
+                    </div>
+
+                    <div id="pagination" class="pagination"></div>
+                </section>
+
+                <section id="settings-section" class="admin-section">
+                    <div class="settings-box">
+                        <h2>Configuracoes</h2>
+                        <p>Resumo das configuracoes administrativas do painel.</p>
+
+                        <div class="setting-item">
+                            <h3>Sessao administrativa</h3>
+                            <p>Voce pode encerrar a sessao atual a qualquer momento pelo botao "Sair".</p>
+                            <button id="settings-logout-btn" class="btn btn-danger" type="button">
+                                <i class="fas fa-right-from-bracket"></i>
+                                Encerrar sessao
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="lead-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
+        <div class="modal-content">
+            <button class="modal-close" type="button" aria-label="Fechar">&times;</button>
+            <h2 id="lead-modal-title">Detalhes do lead</h2>
+            <div id="lead-details"></div>
+            <div class="modal-actions">
+                <button id="delete-lead-btn" class="btn btn-danger" type="button">
+                    <i class="fas fa-trash"></i>
+                    Deletar lead
+                </button>
+                <button id="close-modal-btn" class="btn btn-secondary" type="button">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('settings-logout-btn').addEventListener('click', function () {
+            document.getElementById('logout-btn').click();
+        });
+    </script>
+    <script src="{{ url_for('static', filename='admin/admin.js') }}" defer></script>
+</body>
+</html>
