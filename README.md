@@ -1,91 +1,292 @@
-<<<<<<< HEAD
-# 🚀 WB Lima - Landing Page Profissional
+# 🚀 WB Lima - Sistema de Segurança Eletrônica Premium
 
-Landing page institucional desenvolvida para a **WB Lima**, empresa especializada em **segurança eletrônica**, com foco em apresentação profissional, geração de leads e conversão.
+Plataforma completa para a **WB Lima**, empresa especializada em segurança eletrônica, com landing page profissional e backend robusto para gerenciamento de leads.
 
 ---
 
 ## 📌 Sobre o Projeto
 
-Este projeto consiste na criação de uma landing page moderna, responsiva e otimizada, com o objetivo de:
+Sistema full-stack que combina:
 
-* Apresentar os serviços da empresa de forma clara
-* Transmitir credibilidade e profissionalismo
-* Gerar contatos e oportunidades de negócio
-* Destacar diferenciais competitivos
+* **Frontend:** Landing page moderna, responsiva e otimizada para conversão
+* **Backend:** API REST em Flask com painel admin integrado
+* **Database:** SQLite (desenvolvimento) / PostgreSQL (produção)
+* **Deployment:** Pronto para Render.com
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-* HTML5
-* CSS3
-* JavaScript (ES6+)
-* Google Maps Embed
-* Bibliotecas de animação (AOS / GSAP - opcional)
+### Frontend
+* HTML5 com Templates Jinja2
+* CSS3 com design responsivo
+* JavaScript (ES6+) com Fetch API
+* Font Awesome Icons
+* Google Fonts (Playfair Display, Poppins)
+
+### Backend
+* Python 3.8+
+* Flask 3.0
+* SQLAlchemy ORM
+* Flask-CORS
+* Flask-Mailman (envio de emails)
+* Gunicorn (servidor de produção)
 
 ---
 
 ## 🎯 Funcionalidades
 
-* ✅ Layout moderno e responsivo (mobile-first)
-* ✅ Seções estratégicas para conversão
+### Landing Page
+* ✅ Design moderno e profissional
+* ✅ Layout responsivo (mobile-first)
 * ✅ Animações suaves ao scroll
-* ✅ Botões com integração para WhatsApp
-* ✅ Portfólio de projetos realizados
-* ✅ Formulário de contato
-* ✅ Mapa interativo integrado (Google Maps)
-* ✅ Otimização básica para SEO
+* ✅ Formulário de contato integrado com API
+* ✅ Integração WhatsApp
+* ✅ Galeria de projetos realizados
+* ✅ Depoimentos de clientes
+* ✅ Logos de parceiros
+* ✅ Mapa interativo (Google Maps)
+* ✅ Otimização SEO completa
 
+### Backend & Admin
+* ✅ API REST para recebimento de leads
+* ✅ Validação robusta de dados
+* ✅ Painel Admin protegido por senha
+* ✅ Gerenciamento completo de leads
+* ✅ Envio automático de emails
+* ✅ Exportação em CSV
+* ✅ Sistema de paginação e filtros
+* ✅ Estatísticas em tempo real
+* ✅ CORS configurado
+* ✅ Pronto para produção
 ---
 
-## 🧱 Estrutura da Página
+## 📁 Estrutura do Projeto
 
-* Hero (chamada principal)
-* Sobre a empresa
-* Serviços
-* Diferenciais
-* Portfólio / Obras
-* Depoimentos
-* Call To Action (CTA)
-* Contato
-* Rodapé
-
----
-
-## 🌎 Deploy
-
-Este projeto está publicado via **Netlify**, com deploy automático integrado ao GitHub.
-
----
-
-## ⚙️ Como Rodar o Projeto Localmente
-
-1. Clone o repositório:
-
-```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
+```
+wb-lima-site/
+├── app.py                  # Aplicação Flask principal
+├── config.py               # Configurações (variáveis de ambiente)
+├── models.py               # Modelos ORM (Lead)
+├── requirements.txt        # Dependências Python
+├── .env.example            # Template de variáveis de ambiente
+├── render.yaml             # Configuração Render
+├── README.md              # Este arquivo
+├── routes/
+│   ├── leads.py           # API de leads
+│   └── admin.py           # Rotas do painel admin
+├── templates/
+│   ├── index.html         # Landing page
+│   ├── admin_login.html   # Login do admin
+│   └── admin_dashboard.html # Painel de controle
+└── static/
+    ├── style.css          # CSS da landing page
+    ├── form-handler.js    # Handler do formulário
+    ├── assets/            # Imagens e logos
+    └── admin/
+        ├── admin.css      # CSS do painel
+        └── admin.js       # JavaScript do painel
 ```
 
-2. Acesse a pasta:
+---
 
+## 🚀 Como Executar Localmente
+
+### Pré-requisitos
+- Python 3.8+
+- pip
+- Git (opcional)
+
+### Instalação
+
+1. **Clone o repositório:**
 ```bash
-cd seu-repositorio
+git clone <seu-repo-url>
+cd wb-lima-site
 ```
 
-3. Abra o arquivo `index.html` no navegador
+2. **Crie e ative o ambiente virtual:**
+```bash
+# Windows
+python -m venv venv
+venv\Scripts\activate
+
+# macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
+```
+
+3. **Instale as dependências:**
+```bash
+pip install -r requirements.txt
+```
+
+4. **Configure as variáveis de ambiente:**
+```bash
+# Copie o exemplo
+cp .env.example .env
+
+# Edite o .env com suas configurações
+```
+
+5. **Execute a aplicação:**
+```bash
+python app.py
+```
+
+A aplicação estará disponível em `http://localhost:5000`
 
 ---
 
-## 🔄 Atualização do Projeto
+## 📝 Configuração de Email (Opcional)
 
-Para atualizar o projeto:
+Para ativar o envio automático de emails:
 
+1. **Configure o Gmail:**
+   - Ative 2FA na sua conta Google
+   - Gere uma "Senha de App": https://support.google.com/accounts/answer/185833
+
+2. **Configure no `.env`:**
+```env
+MAIL_SERVER=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USE_TLS=True
+MAIL_USERNAME=seu-email@gmail.com
+MAIL_PASSWORD=sua-senha-de-app
+MAIL_DEFAULT_SENDER=contato@wblima.com.br
+```
+
+---
+
+## 🔐 Configurar Painel Admin
+
+1. Acesse: `http://localhost:5000/admin`
+2. Senha padrão: `admin123`
+3. **IMPORTANTE:** Altere a senha no `.env`:
+```env
+ADMIN_PASSWORD=sua-senha-super-segura
+```
+
+---
+
+## 📤 Fazer Deploy no Render
+
+### Passo a Passo:
+
+1. **Push para GitHub:**
 ```bash
 git add .
-git commit -m "Atualização da landing page"
+git commit -m "Deploy no Render"
 git push origin main
 ```
+
+2. **Ir para Render:**
+   - https://render.com
+   - Crie uma conta
+   - Clique "New +" → "Web Service"
+   - Conecte seu repositório GitHub
+
+3. **Configure o deploy:**
+   - Name: `wb-lima-api`
+   - Environment: `Python 3`
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `gunicorn app:app`
+   - Plan: Free (ou Superior)
+
+4. **Configure variáveis de ambiente:**
+```env
+FLASK_ENV=production
+SECRET_KEY=sua-chave-super-segura
+ADMIN_PASSWORD=sua-senha-admin
+MAIL_SERVER=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USE_TLS=True
+MAIL_USERNAME=seu-email@gmail.com
+MAIL_PASSWORD=sua-senha-app
+MAIL_DEFAULT_SENDER=contato@wblima.com.br
+```
+
+5. **Clique em "Create Web Service"**
+
+Aguarde 2-3 minutos. Sua app estará em `https://seu-app.onrender.com` 🎉
+
+---
+
+## 📊 API Endpoints
+
+### Leads (Público)
+```
+POST   /api/leads          - Criar novo lead
+GET    /api/leads/<id>     - Obter detalhes
+GET    /api/stats          - Estatísticas gerais
+GET    /health             - Health check
+```
+
+### Admin (Protegido)
+```
+POST   /admin/login                 - Fazer login
+POST   /admin/logout                - Fazer logout
+GET    /admin/                      - Acessar dashboard
+GET    /admin/api/leads             - Listar todos
+GET    /admin/api/leads/<id>        - Detalhes
+DELETE /admin/api/leads/<id>        - Deletar
+PATCH  /admin/api/leads/<id>/notes  - Adicionar notas
+PATCH  /admin/api/leads/<id>/email-sent - Marcar respondido
+GET    /admin/api/stats             - Estatísticas
+GET    /admin/api/export            - Exportar CSV
+```
+
+---
+
+## 🔧 Troubleshooting
+
+### Erro: ModuleNotFoundError
+```bash
+pip install -r requirements.txt
+```
+
+### Erro: Database is locked
+- Use PostgreSQL em produção (Render oferece gratuito)
+- SQLite não suporta múltiplas conexões simultâneas
+
+### Email não envía
+- Verifique credenciais SMTP
+- Use "Senha de App" do Gmail, não sua senha normal
+- Ative "Permitir apps menos seguros"
+
+### Erro 401 no Admin
+- Verifique se `ADMIN_PASSWORD` em `.env` está correto
+- Padrão é `admin123`
+
+---
+
+## 🔄 Atualizações Futuras
+
+- [ ] Autenticação via Google + Dashboard mais avançado
+- [ ] Integração com WhatsApp Chat
+- [ ] Sistema de agendamentos
+- [ ] Integrações CRM (Pipedrive, HubSpot)
+- [ ] Webhooks para externos serviços
+- [ ] Suporte a pagamentos
+
+---
+
+## 📞 Suporte
+
+* Email: wellington@wblima.com.br
+* WhatsApp: (11) 94777-2127
+* Website: https://wblima.com.br
+
+---
+
+## 📄 Licença
+
+Propriedade da WB Lima - Segurança Eletrônica Premium
+
+---
+
+**Versão:** 1.0.0 | **Última atualização:** Abril 2026 | **Status:** ✅ Pronto para Produção
+
 
 O deploy será realizado automaticamente pelo Netlify.
 
