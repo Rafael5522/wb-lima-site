@@ -6,8 +6,15 @@ from datetime import timedelta
 
 class Config:
     """Configurações base"""
-    # Database
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///instance/app.db'
+    # Database - Usar caminho relativo que funciona em qualquer OS
+    # Em produção, DATABASE_URL deve ser PostgreSQL no Render
+    if os.environ.get('DATABASE_URL'):
+        SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+    else:
+        # Desenvolvimento: usar SQLite no diretório ./data/
+        db_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data', 'app.db')
+        SQLALCHEMY_DATABASE_URI = f'sqlite:///{db_path}'
+    
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # Email

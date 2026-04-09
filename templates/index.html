@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -82,7 +82,6 @@
         <!-- Logo -->
         <a href="#hero" class="logo" aria-label="WB Lima - Voltar ao início">
           <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="WB Lima" class="logo-img">
-          <span class="logo-text">WB Lima</span>
         </a>
 
         <!-- Navigation -->
@@ -166,7 +165,7 @@
 
           <!-- Hero Image -->
           <div class="hero-image fade-in" data-delay="200">
-            <img src="{{ url_for('static', filename='assets/portaria_remota.png') }}" alt="Sistema de Segurança Eletrônica Profissional" class="hero-img">
+            <img src="{{ url_for('static', filename='assets/portaria_remota.png') }}" alt="Sistema de Segurança Eletrônica Profissional" class="hero-img" fetchpriority="high" decoding="async">
           </div>
         </div>
       </div>
@@ -225,6 +224,492 @@
       </div>
     </section>
 
+    <!-- ========== SERVIÇOS ========== -->
+    <section id="servicos" class="section section-servicos">
+      <div class="container-fluid">
+        <div class="section-header">
+          <span class="section-tag slide-up">SOLUÇÕES</span>
+          <h2 class="section-title slide-up">Serviços Completos de<br>Segurança Eletrônica</h2>
+          <p class="section-description slide-up" data-delay="100">
+            Oferecemos soluções integradas e personalizadas para atender suas necessidades específicas de proteção.
+          </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="services-grid">
+          
+          <div class="service-card slide-up" data-delay="150">
+            <div class="service-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="service-title">Cerca Elétrica</h3>
+            <p class="service-description">
+              Sistemas de cerca elétrica de alta segurança com tecnologia avançada. Perimetrais eficientes para propriedades residenciais e comerciais.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> Instalação profissional</li>
+              <li><i class="fas fa-check"></i> Manutenção preventiva</li>
+              <li><i class="fas fa-check"></i> Suporte 24/7</li>
+            </ul>
+          </div>
+
+          <div class="service-card slide-up" data-delay="200">
+            <div class="service-icon">
+              <i class="fas fa-camera"></i>
+            </div>
+            <h3 class="service-title">CFTV Inteligente</h3>
+            <p class="service-description">
+              Sistemas de vigilância com câmeras 4K, IA e armazenamento em nuvem. Monitoramento em tempo real com acesso remoto.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> Câmeras 4K/8K</li>
+              <li><i class="fas fa-check"></i> IA para reconhecimento</li>
+              <li><i class="fas fa-check"></i> Armazenamento escalável</li>
+            </ul>
+          </div>
+
+          <div class="service-card slide-up" data-delay="250">
+            <div class="service-icon">
+              <i class="fas fa-door-open"></i>
+            </div>
+            <h3 class="service-title">Controle de Acesso</h3>
+            <p class="service-description">
+              Sistemas modernos com leitores biométricos, cartões inteligentes e integração com sistemas de segurança.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> Biometria avançada</li>
+              <li><i class="fas fa-check"></i> Logs de acesso</li>
+              <li><i class="fas fa-check"></i> Integração total</li>
+            </ul>
+          </div>
+
+          <div class="service-card slide-up" data-delay="300">
+            <div class="service-icon">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3 class="service-title">Infraestrutura</h3>
+            <p class="service-description">
+              Projetos de infraestrutura completos: cablagem estruturada, aterramento, nobreaks, geradores e redundância.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> Projetos customizados</li>
+              <li><i class="fas fa-check"></i> Redundância garantida</li>
+              <li><i class="fas fa-check"></i> Consultoria técnica</li>
+            </ul>
+          </div>
+
+          <div class="service-card slide-up" data-delay="350">
+            <div class="service-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3 class="service-title">Automação Residencial</h3>
+            <p class="service-description">
+              Integração de segurança com automação residencial inteligente. Controle centralizado de iluminação e climatização.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> Controle por app</li>
+              <li><i class="fas fa-check"></i> Automação inteligente</li>
+              <li><i class="fas fa-check"></i> Economia de energia</li>
+            </ul>
+          </div>
+
+          <div class="service-card slide-up" data-delay="400">
+            <div class="service-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3 class="service-title">Consultoria Técnica</h3>
+            <p class="service-description">
+              Análise profissional de vulnerabilidades e recomendações customizadas. Projetos de segurança sob medida.
+            </p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> Diagnóstico completo</li>
+              <li><i class="fas fa-check"></i> Relatórios detalhados</li>
+              <li><i class="fas fa-check"></i> ROI orientado</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DIFERENCIAIS ========== -->
+    <section id="diferenciais" class="section section-diferenciais">
+      <div class="container-fluid">
+        <div class="section-header">
+          <span class="section-tag slide-up">VANTAGENS</span>
+          <h2 class="section-title slide-up">O Que Nos Torna Referência</h2>
+          <p class="section-description slide-up" data-delay="100">
+            Entregamos mais do que segurança—entregamos tranquilidade, confiança e resultados mensuráveis.
+          </p>
+        </div>
+
+        <!-- Diferencials Grid -->
+        <div class="diferenciais-grid">
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="150">
+            <div class="diferencial-icon diferenciais-icon">
+              <i class="fas fa-map-location-dot"></i>
+            </div>
+            <h3 class="diferenciais-title">Atendimento Nacional</h3>
+            <p class="diferenciais-description">Suporte técnico em cobertura nacional com equipes estratégicas e agilidade comprovada.</p>
+          </div>
+
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="200">
+            <div class="diferencial-icon diferenciais-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <h3 class="diferenciais-title">Equipe Especializada</h3>
+            <p class="diferenciais-description">Técnicos certificados com treinamento contínuo nas tecnologias mais avançadas do mercado.</p>
+          </div>
+
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="250">
+            <div class="diferencial-icon diferenciais-icon">
+              <i class="fas fa-chess-board"></i>
+            </div>
+            <h3 class="diferenciais-title">Projetos Personalizados</h3>
+            <p class="diferenciais-description">Cada projeto é único. Analisamos suas necessidades e criamos soluções sob medida.</p>
+          </div>
+
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="300">
+            <div class="diferencial-icon diferenciais-icon">
+              <i class="fas fa-wifi"></i>
+            </div>
+            <h3 class="diferenciais-title">Tecnologia de Ponta</h3>
+            <p class="diferenciais-description">Utilizamos as melhores marcas: Intelbras, Hikvision, Dahua e Axis.</p>
+          </div>
+
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="350">
+            <div class="diferencial-icon diferenciais-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3 class="diferenciais-title">Monitoramento 24/7</h3>
+            <p class="diferenciais-description">Acompanhamento contínuo dos sistemas com alertas em tempo real e suporte imediato.</p>
+          </div>
+
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="400">
+            <div class="diferencial-icon diferenciais-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <h3 class="diferenciais-title">Garantia Completa</h3>
+            <p class="diferenciais-description">Garantia em equipamentos e serviços com cobertura total e zero burocracias.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PORTFÓLIO ========== -->
+    <section id="portfolio" class="section section-portfolio">
+      <div class="container-fluid">
+        <div class="section-header">
+          <span class="section-tag slide-up">TRABALHOS</span>
+          <h2 class="section-title slide-up">Projetos de Referência</h2>
+          <p class="section-description slide-up" data-delay="100">
+            Confira alguns de nossos projetos mais relevantes.
+          </p>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="portfolio-grid">
+          <div class="portfolio-item slide-up" data-delay="150">
+            <div class="portfolio-image">
+              <img src="{{ url_for('static', filename='assets/cerca-eletrica.jpg') }}" alt="Cerca Elétrica - Condomínio Premium" loading="lazy">
+              <div class="portfolio-overlay">
+                <a href="{{ url_for('static', filename='assets/cerca-eletrica.jpg') }}" class="portfolio-zoom" aria-label="Ampliar imagem">
+                  <i class="fas fa-expand"></i>
+                </a>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <h3>Condomínio Residencial Premium</h3>
+              <p>Cerca elétrica de alta segurança com monitoramento integrado.</p>
+            </div>
+          </div>
+
+          <div class="portfolio-item slide-up" data-delay="200">
+            <div class="portfolio-image">
+              <img src="{{ url_for('static', filename='assets/cftv-inteligente.jpg') }}" alt="CFTV Inteligente" loading="lazy">
+              <div class="portfolio-overlay">
+                <a href="{{ url_for('static', filename='assets/cftv-inteligente.jpg') }}" class="portfolio-zoom" aria-label="Ampliar imagem">
+                  <i class="fas fa-expand"></i>
+                </a>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <h3>Centro Comercial</h3>
+              <p>CFTV 4K com IA e armazenamento em nuvem.</p>
+            </div>
+          </div>
+
+          <div class="portfolio-item slide-up" data-delay="250">
+            <div class="portfolio-image">
+              <img src="{{ url_for('static', filename='assets/controle-acesso.jpg') }}" alt="Controle de Acesso" loading="lazy">
+              <div class="portfolio-overlay">
+                <a href="{{ url_for('static', filename='assets/controle-acesso.jpg') }}" class="portfolio-zoom" aria-label="Ampliar imagem">
+                  <i class="fas fa-expand"></i>
+                </a>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <h3>Prédio Corporativo</h3>
+              <p>Controle de acesso biométrico integrado com CFTV.</p>
+            </div>
+          </div>
+
+          <div class="portfolio-item slide-up" data-delay="300">
+            <div class="portfolio-image">
+              <img src="{{ url_for('static', filename='assets/automação_residencial.jpg') }}" alt="Automação Residencial" loading="lazy">
+              <div class="portfolio-overlay">
+                <a href="{{ url_for('static', filename='assets/automação_residencial.jpg') }}" class="portfolio-zoom" aria-label="Ampliar imagem">
+                  <i class="fas fa-expand"></i>
+                </a>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <h3>Residência Smart Home</h3>
+              <p>Automação residencial integrada com segurança eletrônica.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DEPOIMENTOS ========== -->
+    <section id="depoimentos" class="section section-depoimentos">
+      <div class="container-fluid">
+        <div class="section-header">
+          <span class="section-tag slide-up">FEEDBACK</span>
+          <h2 class="section-title slide-up">O Que Dizem Nossos Clientes</h2>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials-grid">
+          <div class="testimonial-card slide-up" data-delay="150">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "A WB Lima transformou completamente a segurança do nosso condomínio. Profissionalismo impecável!"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">RC</div>
+              <div>
+                <h4>Roberto Costa</h4>
+                <p>Síndico - SP</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card slide-up" data-delay="200">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "CFTV de ponta com qualidade excepcional. Suporte técnico impecável e resposta rápida."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">MB</div>
+              <div>
+                <h4>Marina Brandão</h4>
+                <p>Gerente Operações</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card slide-up" data-delay="250">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "Confiança total na WB Lima. Desde diagnóstico até implementação, excelência total!"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">JO</div>
+              <div>
+                <h4>João Oliveira</h4>
+                <p>Proprietário Indústria</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PARCEIROS ========== -->
+    <section id="parceiros" class="section section-parceiros">
+      <div class="container-fluid">
+        <div class="section-header">
+          <span class="section-tag slide-up">NOSSOS PARCEIROS</span>
+          <h2 class="section-title slide-up">Marcas Premium que Confiamos</h2>
+          <p class="section-description slide-up" data-delay="100">
+            Trabalhamos com os melhores fornecedores de tecnologia em segurança eletrônica.
+          </p>
+        </div>
+
+        <!-- Partners Grid -->
+        <div class="partners-grid">
+          <a href="https://www.jvabrasil.com.br/" target="_blank" rel="noopener noreferrer" class="partner-logo slide-up" data-delay="150" title="Visitar site JVA">
+            <img src="{{ url_for('static', filename='assets/logo_jva.png') }}" alt="JVA - Cerca Elétrica" loading="lazy" decoding="async">
+          </a>
+          
+          <a href="https://www.hikvision.com/br/" target="_blank" rel="noopener noreferrer" class="partner-logo slide-up" data-delay="200" title="Visitar site Hikvision">
+            <img src="{{ url_for('static', filename='assets/hikvision_logo.png') }}" alt="Hikvision - CFTV" loading="lazy" decoding="async">
+          </a>
+          
+          <a href="https://www.intelbras.com.br/" target="_blank" rel="noopener noreferrer" class="partner-logo slide-up" data-delay="250" title="Visitar site Intelbras">
+            <img src="{{ url_for('static', filename='assets/intelbras_logo.png') }}" alt="Intelbras" loading="lazy" decoding="async">
+          </a>
+          
+          <a href="https://www.dahuatech.com/pt/" target="_blank" rel="noopener noreferrer" class="partner-logo slide-up" data-delay="300" title="Visitar site Dahua">
+            <img src="{{ url_for('static', filename='assets/dahua_logo.png') }}" alt="Dahua" loading="lazy" decoding="async">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CLIENTES ATENDIDOS ========== -->
+    <section id="clientes" class="section section-clientes">
+      <div class="container-fluid">
+        <div class="section-header">
+          <span class="section-tag slide-up">NOSSOS CLIENTES</span>
+          <h2 class="section-title slide-up">Condomínios e Empresas que Confiam na WB Lima</h2>
+          <p class="section-description slide-up" data-delay="100">
+            Segurança Premium para os maiores empreendimentos do país.
+          </p>
+        </div>
+
+        <!-- Clients Grid -->
+        <div class="clients-grid">
+          <div class="client-card slide-up" data-delay="150">
+            <div class="client-logo">
+              <img src="{{ url_for('static', filename='assets/clientes_logos/reservadaserra.png') }}" alt="Reserva da Serra" class="client-logo-img" loading="lazy" decoding="async">
+            </div>
+            <span class="client-category"><i class="fas fa-shield"></i> Condomínio</span>
+            <h3 class="client-name">Reserva da Serra</h3>
+            <p class="client-benefits">Segurança perimetral robusta e monitoramento 24/7 implantado.</p>
+          </div>
+
+          <div class="client-card slide-up" data-delay="200">
+            <div class="client-logo">
+              <img src="{{ url_for('static', filename='assets/clientes_logos/lorian_boulevard.png') }}" alt="Lorian Boulevard" class="client-logo-img" loading="lazy" decoding="async">
+            </div>
+            <span class="client-category"><i class="fas fa-door-open"></i> Condomínio</span>
+            <h3 class="client-name">Lorian Boulevard</h3>
+            <p class="client-benefits">Controle de acesso integrado com CFTV inteligente.</p>
+          </div>
+
+          <div class="client-card slide-up" data-delay="250">
+            <div class="client-logo">
+              <img src="{{ url_for('static', filename='assets/clientes_logos/genesis_1.png') }}" alt="Residencial Gênesis I" class="client-logo-img" loading="lazy" decoding="async">
+            </div>
+            <span class="client-category"><i class="fas fa-shield"></i> Condomínio</span>
+            <h3 class="client-name">Residencial Gênesis I</h3>
+            <p class="client-benefits">Monitoramento eficiente com tecnologia inteligente.</p>
+          </div>
+
+          <div class="client-card slide-up" data-delay="300">
+            <div class="client-logo">
+              <img src="{{ url_for('static', filename='assets/clientes_logos/reserva_mairare.png') }}" alt="Reserva Mairarê – Raposo Tavares" class="client-logo-img" loading="lazy" decoding="async">
+            </div>
+            <span class="client-category"><i class="fas fa-shield"></i> Condomínio</span>
+            <h3 class="client-name">Reserva Mairarê – Raposo Tavares</h3>
+            <p class="client-benefits">Proteção perimetral integrada com eficiência operacional.</p>
+          </div>
+
+          <div class="client-card slide-up" data-delay="350">
+            <div class="client-logo">
+              <img src="{{ url_for('static', filename='assets/clientes_logos/bosquedohorto.png') }}" alt="Bosque do Horto – Jundiaí" class="client-logo-img" loading="lazy" decoding="async">
+            </div>
+            <span class="client-category"><i class="fas fa-shield"></i> Condomínio</span>
+            <h3 class="client-name">Bosque do Horto – Jundiaí</h3>
+            <p class="client-benefits">Segurança discreta com tecnologia de ponta.</p>
+          </div>
+
+          <div class="client-card slide-up" data-delay="400">
+            <div class="client-logo">
+              <img src="{{ url_for('static', filename='assets/clientes_logos/mercado_livre.png') }}" alt="Mercado Livre – Centro Logístico" class="client-logo-img" loading="lazy" decoding="async">
+            </div>
+            <span class="client-category"><i class="fas fa-camera"></i> Logística</span>
+            <h3 class="client-name">Mercado Livre – Centro Logístico</h3>
+            <p class="client-benefits">Controle rigoroso de acessos e monitoramento contínuo.</p>
+          </div>
+
+          <div class="client-card slide-up" data-delay="450">
+            <div class="client-logo">
+              <img src="{{ url_for('static', filename='assets/clientes_logos/heinekein.png') }}" alt="Cervejaria Heineken" class="client-logo-img" loading="lazy" decoding="async">
+            </div>
+            <span class="client-category"><i class="fas fa-building"></i> Industrial</span>
+            <h3 class="client-name">Cervejaria Heineken</h3>
+            <p class="client-benefits">Proteção patrimonial com perímetro integrado.</p>
+          </div>
+
+          <div class="client-card slide-up" data-delay="500">
+            <div class="client-logo">
+              <img src="{{ url_for('static', filename='assets/clientes_logos/fraport.png') }}" alt="Fraport – Aeroporto de Fortaleza" class="client-logo-img" loading="lazy" decoding="async">
+            </div>
+            <span class="client-category"><i class="fas fa-plane"></i> Aeroporto</span>
+            <h3 class="client-name">Fraport – Aeroporto</h3>
+            <p class="client-benefits">Segurança crítica com conformidade internacional.</p>
+          </div>
+
+          <div class="client-card slide-up" data-delay="550">
+            <div class="client-logo">
+              <img src="{{ url_for('static', filename='assets/clientes_logos/vale.png') }}" alt="Vale" class="client-logo-img" loading="lazy" decoding="async">
+            </div>
+            <span class="client-category"><i class="fas fa-hammer"></i> Mineradora</span>
+            <h3 class="client-name">Vale</h3>
+            <p class="client-benefits">Segurança em operações críticas com monitoramento perimetral robusto.</p>
+          </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="client-cta-section slide-up" data-delay="600">
+          <h3>Seu projeto merece a mesma excelência</h3>
+          <div class="cta-buttons-clients">
+            <a href="#contato" class="btn btn-primary">
+              <i class="fas fa-envelope"></i>
+              Solicitar Projeto Similar
+            </a>
+            <a href="https://wa.me/5511947772127?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20especialista." class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i>
+              Falar com Especialista
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CTA FORTE ========== -->
+    <section class="section section-cta">
+      <div class="container-fluid">
+        <div class="cta-box">
+          <h2 class="cta-title slide-up">Segurança Premium Começa Aqui</h2>
+          <p class="cta-description slide-up" data-delay="100">
+            Solicite uma análise técnica gratuita e descubra como proteger seu patrimônio.
+          </p>
+          <div class="cta-buttons slide-up" data-delay="200">
+            <a href="#contato" class="btn btn-primary btn-lg">
+              <i class="fas fa-envelope"></i>
+              Solicitar Orçamento
+            </a>
+            <a href="https://wa.me/5511947772127?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20t%C3%A9cnica." class="btn btn-secondary btn-lg" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ========== CONTATO ========== -->
     <section id="contato" class="section section-contato">
       <div class="container-fluid">
@@ -236,23 +721,21 @@
         <div class="contato-grid">
           <!-- Form -->
           <div class="contato-form slide-up" data-delay="150">
-            <form id="contact-form" class="form" novalidate>
+            <form id="contact-form" class="form" action="https://formsubmit.co/contato@wblima.com.br" method="POST" novalidate>
+              <input type="hidden" name="_cc" value="wellington@wblima.com.br">
               <div class="form-group">
                 <label for="form-name">Seu Nome *</label>
                 <input type="text" id="form-name" name="name" required placeholder="Digite seu nome">
-                <span class="error-message" id="error-name"></span>
               </div>
 
               <div class="form-group">
                 <label for="form-email">Email *</label>
                 <input type="email" id="form-email" name="email" required placeholder="seu@email.com">
-                <span class="error-message" id="error-email"></span>
               </div>
 
               <div class="form-group">
                 <label for="form-phone">Telefone *</label>
                 <input type="tel" id="form-phone" name="phone" required placeholder="(11) 99999-9999">
-                <span class="error-message" id="error-phone"></span>
               </div>
 
               <div class="form-group">
@@ -267,18 +750,14 @@
                   <option value="consultoria">Consultoria</option>
                   <option value="outro">Outro</option>
                 </select>
-                <span class="error-message" id="error-tipo"></span>
               </div>
 
               <div class="form-group">
                 <label for="form-message">Mensagem *</label>
                 <textarea id="form-message" name="message" rows="5" required placeholder="Descreva sua necessidade..."></textarea>
-                <span class="error-message" id="error-message"></span>
               </div>
 
-              <div id="form-status" class="form-status"></div>
-
-              <button type="submit" class="btn btn-primary btn-full btn-lg" id="submit-btn">
+              <button type="submit" class="btn btn-primary btn-full btn-lg">
                 <i class="fas fa-send"></i>
                 Enviar Mensagem
               </button>
@@ -385,7 +864,8 @@
   </button>
 
   <!-- Scripts -->
-  <script src="{{ url_for('static', filename='form-handler.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='scripts/main.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='scripts/form-handler.js') }}" defer></script>
 
 </body>
 </html>

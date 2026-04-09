@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="static/styles/main.css">
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -166,7 +166,7 @@
 
           <!-- Hero Image -->
           <div class="hero-image fade-in" data-delay="200">
-            <img src="assets/portaria_remota.png" alt="Sistema de Segurança Eletrônica Profissional" class="hero-img">
+            <img src="assets/portaria_remota.png" alt="Sistema de Segurança Eletrônica Profissional" class="hero-img" fetchpriority="high" decoding="async">
           </div>
         </div>
       </div>
@@ -345,52 +345,52 @@
 
         <!-- Diferencials Grid -->
         <div class="diferenciais-grid">
-          <div class="diferencial-item slide-up" data-delay="150">
-            <div class="diferencial-icon">
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="150">
+            <div class="diferencial-icon diferenciais-icon">
               <i class="fas fa-map-location-dot"></i>
             </div>
-            <h3>Atendimento Nacional</h3>
-            <p>Suporte técnico em cobertura nacional com equipes estratégicas e agilidade comprovada.</p>
+            <h3 class="diferenciais-title">Atendimento Nacional</h3>
+            <p class="diferenciais-description">Suporte técnico em cobertura nacional com equipes estratégicas e agilidade comprovada.</p>
           </div>
 
-          <div class="diferencial-item slide-up" data-delay="200">
-            <div class="diferencial-icon">
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="200">
+            <div class="diferencial-icon diferenciais-icon">
               <i class="fas fa-award"></i>
             </div>
-            <h3>Equipe Especializada</h3>
-            <p>Técnicos certificados com treinamento contínuo nas tecnologias mais avançadas do mercado.</p>
+            <h3 class="diferenciais-title">Equipe Especializada</h3>
+            <p class="diferenciais-description">Técnicos certificados com treinamento contínuo nas tecnologias mais avançadas do mercado.</p>
           </div>
 
-          <div class="diferencial-item slide-up" data-delay="250">
-            <div class="diferencial-icon">
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="250">
+            <div class="diferencial-icon diferenciais-icon">
               <i class="fas fa-chess-board"></i>
             </div>
-            <h3>Projetos Personalizados</h3>
-            <p>Cada projeto é único. Analisamos suas necessidades e criamos soluções sob medida.</p>
+            <h3 class="diferenciais-title">Projetos Personalizados</h3>
+            <p class="diferenciais-description">Cada projeto é único. Analisamos suas necessidades e criamos soluções sob medida.</p>
           </div>
 
-          <div class="diferencial-item slide-up" data-delay="300">
-            <div class="diferencial-icon">
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="300">
+            <div class="diferencial-icon diferenciais-icon">
               <i class="fas fa-wifi"></i>
             </div>
-            <h3>Tecnologia de Ponta</h3>
-            <p>Utilizamos as melhores marcas: Intelbras, Hikvision, Dahua e Axis.</p>
+            <h3 class="diferenciais-title">Tecnologia de Ponta</h3>
+            <p class="diferenciais-description">Utilizamos as melhores marcas: Intelbras, Hikvision, Dahua e Axis.</p>
           </div>
 
-          <div class="diferencial-item slide-up" data-delay="350">
-            <div class="diferencial-icon">
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="350">
+            <div class="diferencial-icon diferenciais-icon">
               <i class="fas fa-eye"></i>
             </div>
-            <h3>Monitoramento 24/7</h3>
-            <p>Acompanhamento contínuo dos sistemas com alertas em tempo real e suporte imediato.</p>
+            <h3 class="diferenciais-title">Monitoramento 24/7</h3>
+            <p class="diferenciais-description">Acompanhamento contínuo dos sistemas com alertas em tempo real e suporte imediato.</p>
           </div>
 
-          <div class="diferencial-item slide-up" data-delay="400">
-            <div class="diferencial-icon">
+          <div class="diferencial-item diferenciais-card slide-up" data-delay="400">
+            <div class="diferencial-icon diferenciais-icon">
               <i class="fas fa-certificate"></i>
             </div>
-            <h3>Garantia Completa</h3>
-            <p>Garantia em equipamentos e serviços com cobertura total e zero burocracias.</p>
+            <h3 class="diferenciais-title">Garantia Completa</h3>
+            <p class="diferenciais-description">Garantia em equipamentos e serviços com cobertura total e zero burocracias.</p>
           </div>
         </div>
       </div>
@@ -559,25 +559,25 @@
         <!-- Partners Grid -->
         <div class="partners-grid">
           <a href="https://www.jvabrasil.com.br/" target="_blank" rel="noopener noreferrer" class="partner-card slide-up" data-delay="150" title="Visitar site JVA">
-            <img src="assets/logo_jva.png" alt="JVA - Cerca Elétrica" class="partner-logo">
+            <img src="assets/logo_jva.png" alt="JVA - Cerca Elétrica" class="partner-logo" loading="lazy" decoding="async">
             <p class="partner-name">Cerca Elétrica JVA</p>
             <p class="partner-description">Especialista em sistemas de cerca elétrica de alta performance e confiabilidade.</p>
           </a>
           
           <a href="https://www.hikvision.com/br/" target="_blank" rel="noopener noreferrer" class="partner-card slide-up" data-delay="200" title="Visitar site Hikvision">
-            <img src="assets/hikvision_logo.png" alt="Hikvision - CFTV" class="partner-logo">
+            <img src="assets/hikvision_logo.png" alt="Hikvision - CFTV" class="partner-logo" loading="lazy" decoding="async">
             <p class="partner-name">Hikvision</p>
             <p class="partner-description">Líder global em soluções de vigilância com tecnologia 4K ultra HD e IA.</p>
           </a>
           
           <a href="https://www.intelbras.com.br/" target="_blank" rel="noopener noreferrer" class="partner-card slide-up" data-delay="250" title="Visitar site Intelbras">
-            <img src="assets/intelbras_logo.png" alt="Intelbras" class="partner-logo">
+            <img src="assets/intelbras_logo.png" alt="Intelbras" class="partner-logo" loading="lazy" decoding="async">
             <p class="partner-name">Intelbras</p>
             <p class="partner-description">Inovação brasileira em segurança eletrônica e sistemas integrados.</p>
           </a>
           
           <a href="https://www.dahuatech.com/pt/" target="_blank" rel="noopener noreferrer" class="partner-card slide-up" data-delay="300" title="Visitar site Dahua">
-            <img src="assets/dahua_logo.png" alt="Dahua" class="partner-logo">
+            <img src="assets/dahua_logo.png" alt="Dahua" class="partner-logo" loading="lazy" decoding="async">
             <p class="partner-name">Dahua</p>
             <p class="partner-description">Tecnologia avançada em vigilância por vídeo com soluções inteligentes e escaláveis.</p>
           </a>
@@ -600,7 +600,7 @@
         <div class="clients-grid">
           <div class="client-card slide-up" data-delay="150">
             <div class="client-logo">
-              <img src="assets/clientes_logos/reservadaserra.png" alt="Reserva da Serra" class="logo-img">
+              <img src="assets/clientes_logos/reservadaserra.png" alt="Reserva da Serra" class="client-logo-img" loading="lazy" decoding="async">
             </div>
             <span class="client-category"><i class="fas fa-shield"></i> Condomínio</span>
             <h3 class="client-name">Reserva da Serra</h3>
@@ -609,7 +609,7 @@
 
           <div class="client-card slide-up" data-delay="200">
             <div class="client-logo">
-              <img src="assets/clientes_logos/lorian_boulevard.png" alt="Lorian Boulevard" class="logo-img">
+              <img src="assets/clientes_logos/lorian_boulevard.png" alt="Lorian Boulevard" class="client-logo-img" loading="lazy" decoding="async">
             </div>
             <span class="client-category"><i class="fas fa-door-open"></i> Condomínio</span>
             <h3 class="client-name">Lorian Boulevard</h3>
@@ -618,7 +618,7 @@
 
           <div class="client-card slide-up" data-delay="250">
             <div class="client-logo">
-              <img src="assets/clientes_logos/genesis_1.png" alt="Residencial Gênesis I" class="logo-img">
+              <img src="assets/clientes_logos/genesis_1.png" alt="Residencial Gênesis I" class="client-logo-img" loading="lazy" decoding="async">
             </div>
             <span class="client-category"><i class="fas fa-shield"></i> Condomínio</span>
             <h3 class="client-name">Residencial Gênesis I</h3>
@@ -627,7 +627,7 @@
 
           <div class="client-card slide-up" data-delay="300">
             <div class="client-logo">
-              <img src="assets/clientes_logos/reserva_mairare.png" alt="Reserva Mairarê – Raposo Tavares" class="logo-img">
+              <img src="assets/clientes_logos/reserva_mairare.png" alt="Reserva Mairarê – Raposo Tavares" class="client-logo-img" loading="lazy" decoding="async">
             </div>
             <span class="client-category"><i class="fas fa-shield"></i> Condomínio</span>
             <h3 class="client-name">Reserva Mairarê – Raposo Tavares</h3>
@@ -636,7 +636,7 @@
 
           <div class="client-card slide-up" data-delay="350">
             <div class="client-logo">
-              <img src="assets/clientes_logos/bosquedohorto.png" alt="Bosque do Horto – Jundiaí" class="logo-img">
+              <img src="assets/clientes_logos/bosquedohorto.png" alt="Bosque do Horto – Jundiaí" class="client-logo-img" loading="lazy" decoding="async">
             </div>
             <span class="client-category"><i class="fas fa-shield"></i> Condomínio</span>
             <h3 class="client-name">Bosque do Horto – Jundiaí</h3>
@@ -645,7 +645,7 @@
 
           <div class="client-card slide-up" data-delay="400">
             <div class="client-logo">
-              <img src="assets/clientes_logos/mercado_livre.png" alt="Mercado Livre – Centro Logístico" class="logo-img">
+              <img src="assets/clientes_logos/mercado_livre.png" alt="Mercado Livre – Centro Logístico" class="client-logo-img" loading="lazy" decoding="async">
             </div>
             <span class="client-category"><i class="fas fa-camera"></i> Logística</span>
             <h3 class="client-name">Mercado Livre – Centro Logístico</h3>
@@ -654,7 +654,7 @@
 
           <div class="client-card slide-up" data-delay="450">
             <div class="client-logo">
-              <img src="assets/clientes_logos/heinekein.png" alt="Cervejaria Heineken" class="logo-img">
+              <img src="assets/clientes_logos/heinekein.png" alt="Cervejaria Heineken" class="client-logo-img" loading="lazy" decoding="async">
             </div>
             <span class="client-category"><i class="fas fa-building"></i> Industrial</span>
             <h3 class="client-name">Cervejaria Heineken</h3>
@@ -663,7 +663,7 @@
 
           <div class="client-card slide-up" data-delay="500">
             <div class="client-logo">
-              <img src="assets/clientes_logos/fraport.png" alt="Fraport – Aeroporto de Fortaleza" class="logo-img">
+              <img src="assets/clientes_logos/fraport.png" alt="Fraport – Aeroporto de Fortaleza" class="client-logo-img" loading="lazy" decoding="async">
             </div>
             <span class="client-category"><i class="fas fa-plane"></i> Aeroporto</span>
             <h3 class="client-name">Fraport – Aeroporto</h3>
@@ -672,7 +672,7 @@
 
           <div class="client-card slide-up" data-delay="550">
             <div class="client-logo">
-              <img src="assets/clientes_logos/vale.png" alt="Vale" class="logo-img">
+              <img src="assets/clientes_logos/vale.png" alt="Vale" class="client-logo-img" loading="lazy" decoding="async">
             </div>
             <span class="client-category"><i class="fas fa-hammer"></i> Mineradora</span>
             <h3 class="client-name">Vale</h3>

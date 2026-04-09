@@ -20,11 +20,12 @@ def create_app(config_name=None):
     app = Flask(__name__)
     app.config.from_object(config_map.get(config_name, config_map['default']))
     
-    # Criar pasta instance se não existir
+    # Criar pasta de dados se não existir (ANTES de usar o banco)
+    db_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data')
     try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+        os.makedirs(db_dir, exist_ok=True)
+    except Exception as e:
+        print(f"Aviso: Não foi possível criar pasta data/: {e}")
     
     # Inicializar extensões
     db.init_app(app)
@@ -81,9 +82,14 @@ def create_app(config_name=None):
     def inject_config():
         return dict(current_year=datetime.now().year)
     
-    # Criar tabelas
+    # Criar tabelas com tratamento de erro
     with app.app_context():
-        db.create_all()
+        try:
+            db.create_all()
+            print("✅ Banco de dados inicializado com sucesso!")
+        except Exception as e:
+            print(f"⚠️ Erro ao criar tabelas do banco: {e}")
+            # Em produção, isso não é crítico - o banco pode já existir
     
     return app
 

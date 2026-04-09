@@ -30,6 +30,7 @@ wheels/
 
 # Flask
 instance/
+data/
 .webassets-cache
 
 # Database
